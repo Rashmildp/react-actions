@@ -2,30 +2,30 @@ name: Actions Artifacts Example
 
 on:
   push:
-    branches: [ master ]
+    branches: [ master , dinith-fix]
 
 jobs:
        
   archive-build-artifacts:
-    runs-on: windows-latest
+    runs-on: ubuntu-latest
     steps:
 
-      - name: Step 1 - Create a temporary artifact downloads folder
-        run: mkdir downloads
-        
-      - name: step 2 - Add artifacts to publish to the temp folder
-        uses: actions/download-artifact@v1
+      - uses: actions/checkout@v2
+      - name: Use Node.js 14
+        uses: actions/setup-node@v1
         with:
-          name: react-github-actions-build
-deploy:
-    runs-on: windows-latest
-    # When application is successfully tested and build has been generated
-    # Then we can start with deployment
-    needs: build
-    steps:
-      # Download previously shared build
-      - name: Get artifact
-        uses: actions/download-artifact@v1
-        with:
-          name: react-github-actions-build
+          node-version: '16'
+      - run: npm ci
+      - run: npm run build
+# deploy:
+#     runs-on: windows-latest
+#     # When application is successfully tested and build has been generated
+#     # Then we can start with deployment
+#     needs: build
+#     steps:
+#       # Download previously shared build
+#       - name: Get artifact
+#         uses: actions/download-artifact@v1
+#         with:
+#           name: react-github-actions-build
    
