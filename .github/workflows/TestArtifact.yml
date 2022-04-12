@@ -19,9 +19,15 @@ jobs:
       - run: npm run build
       
 #       - name: See where we are
-      - run: ls -l 
-      - run: cd ./build
-      - run: ls -l
+#       - run: ls -l 
+#       - run: cd ./build
+#       - run: ls -l
+
+      - name: Archive Production Artifact
+        uses: actions/upload-artifact@master
+        with:
+          name: build
+          path: build
 # deploy:
 #     runs-on: windows-latest
 #     # When application is successfully tested and build has been generated
