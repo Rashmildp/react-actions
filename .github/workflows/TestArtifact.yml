@@ -17,6 +17,9 @@ jobs:
           node-version: '16'
       - run: npm ci
       - run: npm run build
+      
+      - name: See where we are
+      - run: ls -l 
 # deploy:
 #     runs-on: windows-latest
 #     # When application is successfully tested and build has been generated
