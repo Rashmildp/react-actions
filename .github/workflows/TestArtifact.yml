@@ -18,8 +18,10 @@ jobs:
       - run: npm ci
       - run: npm run build
       
-      - name: See where we are
+#       - name: See where we are
       - run: ls -l 
+      - run: cd ./build
+      - run: ls -l
 # deploy:
 #     runs-on: windows-latest
 #     # When application is successfully tested and build has been generated
